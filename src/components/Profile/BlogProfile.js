@@ -21,7 +21,7 @@ function BlogProfile(props) {
     };
 
     loadBlogs();
-  }, []);
+  }, [props, userId]);
 
   let filteredBlogData;
 
