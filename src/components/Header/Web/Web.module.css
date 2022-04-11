@@ -1,0 +1,37 @@
+.web {
+  display: flex;
+}
+
+.weboption {
+  display: flex;
+  margin: 1em;
+  justify-content: space-between;
+}
+
+.weboption li {
+  list-style: none;
+  margin-left: 2em;
+}
+
+.weboption li a {
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+.weboption li a:hover {
+  border-bottom: 3px solid white;
+}
+
+.btn {
+  padding: 0.4em 1.2em;
+  background-color: #124b94;
+  color: white;
+  cursor: pointer;
+  border-radius: 1em;
+}
+
+.btn:hover {
+  background-color: #396aaa;
+  border-bottom: none;
+}

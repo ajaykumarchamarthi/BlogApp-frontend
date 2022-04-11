@@ -1,0 +1,132 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  position: fixed;
+  top: 15vh;
+  left: 35vw;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.form {
+  max-width: 30rem;
+  margin: 1rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  background-color: white;
+}
+
+.form label {
+  display: block;
+  margin: 0.1em 0;
+}
+
+.form input {
+  margin: 0.2em 0;
+  padding: 0.4em;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  color: #333;
+  width: 100%;
+  resize: none;
+}
+
+.form select {
+  padding: 0.4em;
+  margin-top: 0.3em;
+}
+
+.form button {
+  border: none;
+  display: inline-block;
+  padding: 0.75rem 2.25rem;
+  border: 1px solid #ff5574;
+  border-radius: 30px;
+  background-color: #ff5574;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.formtitle {
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: red;
+  margin-top: 0.2em;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+}
+
+.btn button {
+  border: none;
+  display: inline-block;
+  padding: 0.75rem 2.25rem;
+  border: 1px solid #ff5574;
+  border-radius: 30px;
+  background-color: #ff5574;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+@media (max-width: 980px) {
+  .modal {
+    top: 15vh;
+    left: 25vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal {
+    top: 15vh;
+    left: 15vw;
+  }
+
+  .form {
+    max-width: 25rem;
+  }
+
+  .form input {
+    width: 100%;
+  }
+
+  .form textarea {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal {
+    top: 10vh;
+    left: 3vw;
+  }
+
+  .postForm {
+    width: 90%;
+  }
+}
+
+@media (max-width: 400px) {
+  .modal {
+    top: 10vh;
+    left: 0vw;
+  }
+}

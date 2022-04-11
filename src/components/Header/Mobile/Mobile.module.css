@@ -1,0 +1,70 @@
+.mobile {
+  background: #1170ec;
+  opacity: 0.9;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 100vw;
+  padding: 0.75rem;
+  color: black;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-size: 1.1rem;
+  height: 100vh;
+  min-height: 100%;
+}
+
+.closeicon {
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+  cursor: pointer;
+  margin-top: 0.1em;
+  z-index: 100;
+}
+
+.mobileoption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.mobileoptions {
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobileoptions li {
+  list-style: none;
+}
+
+.mobileoptions li a {
+  text-decoration: none;
+  color: white;
+}
+
+.mobileoptions li a:hover {
+  border-bottom: 3px solid white;
+}
+
+.mobileoptions li:last-child a:hover {
+  border-bottom: none;
+}
+
+.btn {
+  padding: 0.4em 1.2em;
+  background-color: #124b94;
+  color: white;
+  cursor: pointer;
+  border-radius: 1em;
+}
+
+.btn:hover {
+  background-color: #396aaa;
+}

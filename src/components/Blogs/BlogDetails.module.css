@@ -1,0 +1,43 @@
+.layout {
+  padding: 1em;
+}
+
+.blogDetailInfo {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em;
+}
+
+.blogDetailTitle {
+  font-size: 1.5rem;
+  color: red;
+  margin: 0.3em 0 0.5em;
+  text-align: center;
+}
+
+.blogDetailPicture img {
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+}
+
+.blogDetailDescription p {
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.likes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em;
+}
+
+.like:hover {
+  cursor: pointer;
+}
+
+.likeCount {
+  margin-left: 0.5em;
+  font-weight: bold;
+}

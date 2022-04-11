@@ -1,0 +1,45 @@
+.userProfile {
+  padding: 1em;
+}
+
+.profileContainer {
+  display: flex;
+  -webkit-box-shadow: 2px 2px 9px 0px rgba(0, 0, 0, 0.18);
+  -moz-box-shadow: 2px 2px 9px 0px rgba(0, 0, 0, 0.18);
+  box-shadow: 2px 2px 9px 0px rgba(0, 0, 0, 0.18);
+  padding: 2em;
+  border-radius: 1em;
+}
+
+.profileImg img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1em;
+}
+
+.addBlog {
+  display: flex;
+  margin: 0 1.5em;
+}
+
+.addBlog button {
+  font-size: 0.9rem;
+  align-self: center;
+  padding: 0.5em 1.2em;
+  border: none;
+  border-radius: 1em;
+  color: white;
+  cursor: pointer;
+  background-color: rgb(153, 25, 204);
+}
+
+.addBlog button:hover {
+  background: rgb(220, 53, 220);
+}

@@ -1,0 +1,25 @@
+.blogs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+}
+
+@media screen and (max-width: 1440px) {
+  .blogs {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 1320px) {
+  .blogs {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1.5em;
+  }
+}
+
+@media screen and (max-width: 792px) {
+  .blogs {
+    grid-template-columns: 1fr;
+    margin-bottom: 2em;
+  }
+}

@@ -1,0 +1,110 @@
+.card {
+  max-width: 400px;
+  padding: 1em;
+  margin: 2em auto;
+  border-radius: 0.7em;
+  -webkit-box-shadow: 2px 2px 9px 0px rgba(0, 0, 0, 0.18);
+  -moz-box-shadow: 2px 2px 9px 0px rgba(0, 0, 0, 0.18);
+  box-shadow: 2px 2px 9px 0px rgba(0, 0, 0, 0.18);
+}
+
+.info h3 {
+  font-size: 1.5rem;
+  color: red;
+  margin: 0.3em 0 0.5em;
+}
+
+.category {
+  background: rgb(137, 137, 202);
+  display: inline-block;
+  padding: 0.3em 1em;
+  border-radius: 1em;
+}
+
+.creation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  color: rgb(133, 122, 122);
+}
+
+.creation p {
+  margin: 0.1em 0;
+}
+
+.description p {
+  margin: 1em 0;
+  line-height: 1.2em;
+  font-size: 1.1rem;
+}
+
+.picture {
+  display: flex;
+  justify-content: center;
+}
+
+.picture img {
+  height: 250px;
+  width: 360px;
+  object-fit: cover;
+  padding: 0.2em;
+}
+
+.options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.options button {
+  margin: 1em 0;
+  padding: 0.5em 1.5em;
+  border: none;
+  color: white;
+  background: rgb(7, 92, 149);
+  font-size: 0.9rem;
+  border-radius: 1em;
+  cursor: pointer;
+}
+
+.options button:hover {
+  background: rgb(77, 142, 185);
+}
+
+@media screen and (max-width: 1420px) {
+  .card {
+    max-width: 380px;
+    margin: 2em auto 0;
+  }
+
+  .picture img {
+    height: 250px;
+    width: 320px;
+    object-fit: cover;
+    margin: 0.5em auto;
+    padding: 0.2em;
+  }
+
+  .creation {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card {
+    max-width: 320px;
+  }
+
+  .picture img {
+    height: 250px;
+    width: 300px;
+    object-fit: cover;
+    margin: 0.5em auto;
+    padding: 0.2em;
+  }
+
+  .creation {
+    font-size: 0.9rem;
+  }
+}
