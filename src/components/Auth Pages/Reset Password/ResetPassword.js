@@ -36,7 +36,7 @@ function ResetPassword() {
     fetch(
       `https://insta-blogapp.herokuapp.com/api/v1/users/resetPassword/${token}`,
       {
-        method: "POST",
+        method: "PATCH",
         body: JSON.stringify({ password, passwordConfirm }),
         headers: {
           "content-Type": "application/json",
