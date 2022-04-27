@@ -101,7 +101,7 @@ function BlogDetails() {
             <h3>{blog.title}</h3>
           </div>
           <div className={classes.blogDetailDescription}>
-            <p>{blog.description}</p>
+            <p className={classes.description}>{blog.description}</p>
           </div>
           <div className={classes.likes}>
             <div className={classes.like}>

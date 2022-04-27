@@ -8,6 +8,11 @@
   margin: 1em;
 }
 
+.description {
+  white-space: pre-line;
+  white-space: pre-wrap;
+}
+
 .blogDetailTitle {
   font-size: 1.5rem;
   color: red;
@@ -23,7 +28,7 @@
 
 .blogDetailDescription p {
   font-size: 1.2rem;
-  line-height: 1.4;
+  line-height: 0.8;
 }
 
 .likes {
