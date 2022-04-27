@@ -10,7 +10,7 @@ function Web() {
     <div className={classes.web}>
       <ul className={classes.weboption}>
         <li>
-          <NavLink to="/" activeClassName={classes.active}>
+          <NavLink to="/" activeClassName={classes.active} exact>
             Blogs
           </NavLink>
         </li>

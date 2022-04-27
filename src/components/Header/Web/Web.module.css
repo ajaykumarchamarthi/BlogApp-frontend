@@ -32,6 +32,10 @@
 }
 
 .btn:hover {
-  background-color: #396aaa;
+  background-color: #99abc3;
   border-bottom: none;
+}
+
+.active {
+  border-bottom: 1px solid white;
 }
