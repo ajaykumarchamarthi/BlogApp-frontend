@@ -73,6 +73,11 @@
   margin-top: 0.2em;
 }
 
+.testCredential {
+  margin: 0.5em auto;
+  text-align: center;
+}
+
 hr {
   width: 70%;
   margin: 0 auto;

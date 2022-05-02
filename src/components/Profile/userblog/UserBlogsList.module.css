@@ -21,6 +21,10 @@
   border-radius: 1em;
 }
 
+.navigate {
+  cursor: pointer;
+}
+
 .creation {
   display: flex;
   flex-direction: column;

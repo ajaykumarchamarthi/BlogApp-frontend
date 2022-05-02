@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import EditBlogModal from "../../Modal/EditBlogModal/EditBlogModal";
 import classes from "./UserBlogsList.module.css";
 
@@ -15,6 +16,8 @@ function UserBlogsList({
   const [isOpen, setIsOpen] = useState(false);
   const time = Date.parse(createdAt);
   const date = new Date(time);
+
+  const history = useHistory();
 
   const openHandler = () => {
     setIsOpen(!isOpen);
@@ -58,7 +61,12 @@ function UserBlogsList({
               {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
             </p>
           </div>
-          <h3>{title}</h3>
+          <h3
+            onClick={() => history.replace(`/blogs/${id}`)}
+            className={classes.navigate}
+          >
+            {title}
+          </h3>
           <div className={classes.options}>
             <div>
               <button onClick={openHandler}>Edit Blog</button>
