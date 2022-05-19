@@ -5,7 +5,7 @@ import classes from "./Profile.module.css";
 
 function Profile() {
   const onSaveUser = (data) => {
-    console.log(data);
+    // console.log(data);
   };
 
   return (

@@ -9,11 +9,11 @@ function UserBlogsList({
   title,
   category,
   description,
-  likes,
   createdAt,
   user,
 }) {
   const [isOpen, setIsOpen] = useState(false);
+
   const time = Date.parse(createdAt);
   const date = new Date(time);
 
@@ -73,6 +73,7 @@ function UserBlogsList({
               {isOpen && (
                 <EditBlogModal
                   onConfirm={openHandler}
+                  isOpen={isOpen}
                   blogId={id}
                   title={title}
                   picture={picture}

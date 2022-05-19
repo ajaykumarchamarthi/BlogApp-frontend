@@ -15,7 +15,6 @@ function User() {
         "https://insta-blogapp.herokuapp.com/api/v1/users"
       );
       const { data } = response.data;
-      console.log(data);
       setUser(data.users.find((user) => user._id === userId));
     };
     loadUsers();
@@ -36,7 +35,7 @@ function User() {
           </div>
           <div className={classes.addBlog}>
             <button onClick={openHandler}>Add Blog</button>
-            {isOpen && <AddBlogModal onConfirm={openHandler} />}
+            {isOpen && <AddBlogModal onConfirm={openHandler} isOpen={isOpen} />}
           </div>
         </div>
       </div>

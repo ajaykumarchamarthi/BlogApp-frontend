@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 import ReactDom from "react-dom";
 import Cookies from "js-cookie";
 import classes from "./AddBlogModal.module.css";
@@ -17,7 +18,18 @@ const ModalOverlay = (props) => {
   const schema = yup.object().shape({
     title: yup.string().required("Title is required"),
     description: yup.string().required("Describtion is required"),
-    picture: yup.string().required("Image is required"),
+    file: yup
+      .mixed()
+      .required("You need to provide a image file")
+      .test("fileSize", "The file size is too large", (value) => {
+        return value && value[0].size <= 3000000;
+      })
+      .test("type", "we only support image", (value) => {
+        // console.log(typeof value);
+        // console.log(value[0]);
+        // console.log(value[0].type.includes("image"));
+        return value && value[0].type.includes("image");
+      }),
     category: yup.string().required("category is required"),
   });
 
@@ -29,33 +41,32 @@ const ModalOverlay = (props) => {
 
   const submitHandler = (data, event) => {
     event.preventDefault();
-    const { title, description, picture, category } = data;
+    const { title, description, file, category } = data;
 
     const token = Cookies.get("jwt");
 
     const userId = localStorage.getItem("userId");
 
-    fetch("https://insta-blogapp.herokuapp.com/api/v1/blogs/createblog", {
-      method: "POST",
-      headers: {
-        "content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ title, picture, category, description, userId }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = `${data.message}`;
-            throw new Error(errorMessage);
-          });
-        }
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("file", file[0]);
+    formData.append("category", category);
+    formData.append("description", description);
+    formData.append("userId", userId);
+
+    axios
+      .post("http://localhost:4000/api/v1/blogsfile/createfileblog", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((data) => {
-        alert(data.status);
-        history.replace("/profile");
+        const { status } = data.data;
+        alert(status);
+        props.onConfirm(!props.isOpen);
+        history.replace("/");
       })
       .catch((err) => alert(err.message));
   };
@@ -74,14 +85,16 @@ const ModalOverlay = (props) => {
           <p className={classes.error}>{errors.title?.message}</p>
         </div>
         <div>
-          <label htmlFor="image">Image(Please use url)</label>
+          <label htmlFor="image">
+            Image(Please upload file type of image and size less than 3MB)
+          </label>
           <input
-            type="text"
+            type="file"
             id="image"
-            name="picture"
-            {...register("picture", { required: true })}
+            name="file"
+            {...register("file", { required: true })}
           />
-          <p className={classes.error}>{errors.picture?.message}</p>
+          <p className={classes.error}>{errors.file?.message}</p>
         </div>
         <div>
           <label htmlFor="category">Category</label>
@@ -125,7 +138,7 @@ function AddBlogModal(props) {
         document.getElementById("backdrop-root")
       )}
       {ReactDom.createPortal(
-        <ModalOverlay onConfirm={props.onConfirm} />,
+        <ModalOverlay onConfirm={props.onConfirm} isOpen={props.isOpen} />,
         document.getElementById("overlay-root")
       )}
     </React.Fragment>

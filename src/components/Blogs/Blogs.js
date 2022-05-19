@@ -12,7 +12,6 @@ function Blogs() {
         "https://insta-blogapp.herokuapp.com/api/v1/blogs/allblogs"
       );
       const { data } = response.data;
-      console.log(data.blogs);
       setBlogs(data.blogs);
     };
 
