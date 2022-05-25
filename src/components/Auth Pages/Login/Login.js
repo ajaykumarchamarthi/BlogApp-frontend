@@ -8,7 +8,7 @@ import classes from "./Login.module.css";
 
 const schema = yup.object().shape({
   email: yup.string().email().required("Email is required"),
-  password: yup.string().min(6, "Password must be atleast 8 Characters long!"),
+  password: yup.string().min(8, "Password must be atleast 8 Characters long!"),
 });
 
 function Login() {

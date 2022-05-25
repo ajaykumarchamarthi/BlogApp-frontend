@@ -1,9 +1,9 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useContext } from "react";
 import axios from "axios";
 import ReactDom from "react-dom";
 import Cookies from "js-cookie";
 import classes from "./AddBlogModal.module.css";
+import AuthContext from "../../../store/auth-context";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -13,7 +13,7 @@ const Backdrop = (props) => {
 };
 
 const ModalOverlay = (props) => {
-  const history = useHistory();
+  const submitCtx = useContext(AuthContext);
 
   const schema = yup.object().shape({
     title: yup.string().required("Title is required"),
@@ -39,8 +39,7 @@ const ModalOverlay = (props) => {
     handleSubmit,
   } = useForm({ resolver: yupResolver(schema) });
 
-  const submitHandler = (data, event) => {
-    event.preventDefault();
+  const submitHandler = (data) => {
     const { title, description, file, category } = data;
 
     const token = Cookies.get("jwt");
@@ -56,17 +55,21 @@ const ModalOverlay = (props) => {
     formData.append("userId", userId);
 
     axios
-      .post("http://localhost:4000/api/v1/blogsfile/createfileblog", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        "https://insta-blogapp.herokuapp.com/api/v1/blogsfile/createfileblog",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((data) => {
         const { status } = data.data;
         alert(status);
-        props.onConfirm(!props.isOpen);
-        history.replace("/");
+        props.setIsOpen(!props.isOpen);
+        submitCtx.toggleAddSubmitHandler();
       })
       .catch((err) => alert(err.message));
   };
@@ -138,7 +141,11 @@ function AddBlogModal(props) {
         document.getElementById("backdrop-root")
       )}
       {ReactDom.createPortal(
-        <ModalOverlay onConfirm={props.onConfirm} isOpen={props.isOpen} />,
+        <ModalOverlay
+          onConfirm={props.onConfirm}
+          isOpen={props.isOpen}
+          setIsOpen={props.setIsOpen}
+        />,
         document.getElementById("overlay-root")
       )}
     </React.Fragment>

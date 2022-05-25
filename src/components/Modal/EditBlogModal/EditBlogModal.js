@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useRef, useContext } from "react";
+import AuthContext from "../../../store/auth-context";
 import ReactDom from "react-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -34,8 +34,9 @@ const ModalOverlay = ({
   description,
   onConfirm,
   isOpen,
+  setIsOpen,
 }) => {
-  const history = useHistory();
+  const submitCtx = useContext(AuthContext);
 
   const titleInputRef = useRef("");
   const categoryInputRef = useRef("");
@@ -69,18 +70,21 @@ const ModalOverlay = ({
     formData.append("userId", userId);
 
     axios
-      .patch("http://localhost:4000/api/v1/blogsfile/editfileblog", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .patch(
+        "https://insta-blogapp.herokuapp.com/api/v1/blogsfile/editfileblog",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((data) => {
         const { status } = data.data;
         alert(status);
-
-        onConfirm(!isOpen);
-        history.replace("/");
+        setIsOpen(!isOpen);
+        submitCtx.toggleEditSubmitHandler();
       })
       .catch((err) => alert(err.message));
   };
@@ -147,6 +151,7 @@ function EditBlogModal(props) {
         <ModalOverlay
           onConfirm={props.onConfirm}
           isOpen={props.isOpen}
+          setIsOpen={props.setIsOpen}
           blogId={props.blogId}
           title={props.title}
           description={props.description}

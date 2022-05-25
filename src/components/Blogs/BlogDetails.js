@@ -80,7 +80,6 @@ function BlogDetails() {
         }
       })
       .then((data) => {
-        console.log("unLiked", userId);
         setLike(false);
       })
       .catch((err) => alert(err.message));

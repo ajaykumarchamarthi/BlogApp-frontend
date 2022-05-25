@@ -35,7 +35,13 @@ function User() {
           </div>
           <div className={classes.addBlog}>
             <button onClick={openHandler}>Add Blog</button>
-            {isOpen && <AddBlogModal onConfirm={openHandler} isOpen={isOpen} />}
+            {isOpen && (
+              <AddBlogModal
+                onConfirm={openHandler}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+              />
+            )}
           </div>
         </div>
       </div>

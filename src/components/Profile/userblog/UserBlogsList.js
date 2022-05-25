@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../../../store/auth-context";
 import { useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
 import EditBlogModal from "../../Modal/EditBlogModal/EditBlogModal";
 import classes from "./UserBlogsList.module.css";
 
@@ -14,8 +16,12 @@ function UserBlogsList({
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const isEditSubmittedCtx = useContext(AuthContext);
+
   const time = Date.parse(createdAt);
   const date = new Date(time);
+
+  const token = Cookies.get("jwt");
 
   const history = useHistory();
 
@@ -28,21 +34,12 @@ function UserBlogsList({
       method: "DELETE",
       headers: {
         "content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ blogId }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json;
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = `${data.message}`;
-            throw new Error(errorMessage);
-          });
-        }
-      })
       .then((data) => {
-        alert(data.status);
+        isEditSubmittedCtx.toggleEditSubmitHandler();
       })
       .catch((err) => alert(err.message));
   };
@@ -74,6 +71,7 @@ function UserBlogsList({
                 <EditBlogModal
                   onConfirm={openHandler}
                   isOpen={isOpen}
+                  setIsOpen={setIsOpen}
                   blogId={id}
                   title={title}
                   picture={picture}
